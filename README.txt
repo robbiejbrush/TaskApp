@@ -9,4 +9,4 @@ Database Schemas:
 
 Author: Robbie Brush
 
-Technologies: VSCode, React, Node.js, MySQL
+Technologies: VSCode, React, Node.js, MySQL, Postman
