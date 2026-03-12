@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 .App {
   text-align: center;
+}
+
+
+/*Login Page*/
+.TopDiv {
+  padding-top: 225px;
+  padding-bottom: 60px;
+}
+
+.IntroHeading {
+  font-size: 60px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+}
+
+.LoginPrompt {
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
 }
