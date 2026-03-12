@@ -8,8 +8,9 @@ app.use(cors());
 const db = require('./models');
 
 // Routers
-const loginRouter = require('./routes/Login');
-app.use("/login", loginRouter);
+const usersRouter = require('./routes/Users');
+app.use("/auth", usersRouter);
+
 
 db.sequelize.sync().then(()=> {
     app.listen(3001, () => {

@@ -1,6 +1,7 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import '../App.css';
 
 function Login() {
@@ -15,8 +16,15 @@ function Login() {
             
             <div className="LoginPrompt">
                 <GoogleLogin onSuccess={(credentialResponse) => {
-                console.log(jwtDecode(credentialResponse.credential))
-                navigate("/projects")
+                    const decodedUser = jwtDecode(credentialResponse.credential)
+                    
+                    const data = { email: decodedUser.email, name: decodedUser.name }
+
+                    axios.post("http://localhost:3001/auth", data).then((response) => {
+                        console.log(response.data);
+                    });
+
+                    navigate("/projects")
                 }}
                 onError={() => console.log("Login failed")} 
                 auto_select={true}
