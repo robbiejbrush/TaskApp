@@ -1,0 +1,43 @@
+module.exports = (sequelize, DataTypes) => {
+
+    const Tasks = sequelize.define("Tasks", {
+        taskId: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
+        },
+
+        userId: {
+           type: DataTypes.INTEGER,
+           allowNull: false 
+        },
+
+        projectId: {
+           type: DataTypes.INTEGER,
+           allowNull: false 
+        },
+
+        title: {
+           type: DataTypes.STRING,
+           allowNull: false 
+        },
+
+        description: {
+           type: DataTypes.STRING,
+           allowNull: false 
+        },
+
+        completionStatus: {
+           type: DataTypes.BOOLEAN,
+           allowNull: false 
+        },
+
+        dueDate: {
+           type: DataTypes.DATEONLY,
+           allowNull: false 
+        }
+    });
+
+    return Tasks;
+};
