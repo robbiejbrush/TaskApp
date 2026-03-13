@@ -11,6 +11,9 @@ const db = require('./models');
 const usersRouter = require('./routes/Users');
 app.use("/auth", usersRouter);
 
+const projectsRouter = require('./routes/Projects');
+app.use("/projects", projectsRouter);
+
 
 db.sequelize.sync().then(()=> {
     app.listen(3001, () => {

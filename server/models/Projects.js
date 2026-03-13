@@ -8,11 +8,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        userId: {
-           type: DataTypes.INTEGER,
-           allowNull: false 
-        },
-
         name: {
            type: DataTypes.STRING,
            allowNull: false 
@@ -23,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
            allowNull: false 
         }
     });
+
+    Projects.associate = (models) => {
+        Projects.hasMany(models.Tasks, { foreignKey: 'projectId' });
+    }
 
     return Projects;
 };

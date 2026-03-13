@@ -21,8 +21,11 @@ function Login() {
                     const data = { email: decodedUser.email, name: decodedUser.name }
 
                     axios.post("http://localhost:3001/auth", data).then((response) => {
-                        if (response.data.error) alert(response.data.error);
-                        sessionStorage.setItem("accessToken", response.data)
+                        if (response.data.error) {
+                            alert(response.data.error);
+                        } else {
+                            sessionStorage.setItem("accessToken", response.data);
+                        }
                     });
 
                     navigate("/projects")
