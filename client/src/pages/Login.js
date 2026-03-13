@@ -29,8 +29,7 @@ function Login() {
                 onError={() => console.log("Login failed")} 
                 auto_select={true}
                 shape= "pill"
-                theme= "filled_blue"
-                />
+                theme= "filled_blue"/>
             </div>
         </div>
     );
