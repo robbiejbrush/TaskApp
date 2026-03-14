@@ -1,15 +1,23 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
-
 import Login from './pages/Login';
 import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
 import CreateProject from './pages/CreateProject';
 import JoinProject from './pages/JoinProject';
-
 import logoutIcon from './imgs/icons8-logout-50.png';
+import { jwtDecode } from "jwt-decode";
 
 function Navigation () {
+
+  const token = sessionStorage.getItem('accessToken');
+  let userName = "Unspecified";
+  
+  if (token) {
+    const decoded = jwtDecode(token);
+    userName = decoded.name;
+  }
+
   const location = useLocation();
   let pageName = "Unspecified";
 
@@ -22,7 +30,7 @@ function Navigation () {
   return (
     <div className="NavBar">
       <div style={{ flex: 1, textAlign: 'left' }}>
-        <h1 className= "AppBarUser">User Name</h1>
+        <h1 className= "AppBarUser"> {userName} </h1>
       </div>
       <div>
         <h1 className = "AppBarHeading"> {pageName} </h1>

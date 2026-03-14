@@ -1,10 +1,20 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import '../App.css';
 
 function Projects() {
-    let userId  = 1;
+
+    let userId = null;
+    
+    const token = sessionStorage.getItem('accessToken');
+
+    if (token) {
+        const decoded = jwtDecode(token);
+        userId = decoded.userId;
+    }
+
     const [projects, setProjects] = useState([]);
     
     let navigate = useNavigate();
@@ -18,10 +28,16 @@ function Projects() {
     return (
         <div>
             <div className= "ButtonContainer">
-                <button className= "Button">
+                <button className= "Button"
+                onClick = {() => {
+                    navigate("/createProject");
+                }}>
                     Create Project
                 </button>
-                <button className = "Button">
+                <button className = "Button"
+                onClick = {() => {
+                    navigate("/joinProject");
+                }}>
                     Join Project
                 </button>
             </div>
