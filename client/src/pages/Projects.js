@@ -4,7 +4,7 @@ import axios from "axios";
 import '../App.css';
 
 function Projects() {
-    let userId  = 2;
+    let userId  = 1;
     const [projects, setProjects] = useState([]);
     
     let navigate = useNavigate();
@@ -16,20 +16,29 @@ function Projects() {
     });
 
     return (
-        <div className= "AllProjects">
-            {projects.map((value, key) => {
-                return (
-                    <div 
-                        className= "Project" 
-                        key= {key}
-                        onClick= {() => {
-                            navigate("/tasks");
-                        }}
-                        style={{ backgroundColor: "#" + value.colour, flex: 1}}>
-                        <div className= "ProjectName"> {value.name} </div>
-                    </div>
-                );
-            })}
+        <div>
+            <div className= "ButtonContainer">
+                <button className= "Button">
+                    Create Project
+                </button>
+                <button className = "Button">
+                    Join Project
+                </button>
+            </div>
+            <div className= "AllProjects">
+                {projects.map((value, key) => {
+                    return (
+                        <div 
+                            className= "Project" 
+                            key= {key}
+                            onClick= {() => {
+                                navigate("/tasks");
+                            }}>
+                            <div className= "ProjectName"> {value.name} </div>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }

@@ -4,6 +4,8 @@ import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-
 import Login from './pages/Login';
 import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
+import CreateProject from './pages/CreateProject';
+import JoinProject from './pages/JoinProject';
 
 import logoutIcon from './imgs/icons8-logout-50.png';
 
@@ -42,6 +44,8 @@ function App() {
           <Route path="/" exact element={<Login />} />
           <Route path="/projects" exact element={<Projects />}/>
           <Route path="/tasks" exact element={<Tasks />}/>
+          <Route path="/createProject" exact element={<CreateProject />}/>
+          <Route path="/joinProject" exact element={<JoinProject />}/>
         </Routes>
       </Router>
     </div>
