@@ -10,7 +10,6 @@ router.get("/:userId", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const project = req.body
-
     await Projects.create(project);
     res.json(project);
 });

@@ -1,7 +1,10 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+
 import Login from './pages/Login';
 import Projects from './pages/Projects';
+import Tasks from './pages/Tasks';
+
 import logoutIcon from './imgs/icons8-logout-50.png';
 
 function Navigation () {
@@ -38,6 +41,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Login />} />
           <Route path="/projects" exact element={<Projects />}/>
+          <Route path="/tasks" exact element={<Tasks />}/>
         </Routes>
       </Router>
     </div>
