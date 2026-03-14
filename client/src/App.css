@@ -81,6 +81,10 @@ body, html {
   cursor: pointer;
 }
 
+.Button:hover {
+  transform: scale(1.02);
+}
+
 .AllProjects {
   width: 100%;
   display: grid;
@@ -108,14 +112,14 @@ body, html {
 }
 
 .ProjectName {
-  color: white;
+  color: #1d6ff2;
   text-align: left;
   font-family: 'Outfit', sans-serif;
   font-size: 20px;
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: gray;
+  background-color: white;
   border-bottom-left-radius: 11px;
   border-bottom-right-radius: 11px;
   margin-top: auto;
