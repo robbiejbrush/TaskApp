@@ -22,7 +22,7 @@ router.get("/:userId", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     try {
-        const { name, userId, role } = req.body;
+        const { name, userId } = req.body;
 
         const newProject = await Projects.create({ name });
 

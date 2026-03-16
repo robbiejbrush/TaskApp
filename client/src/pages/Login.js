@@ -10,7 +10,7 @@ function Login() {
 
     return (
         <div>
-            <div className="TopDiv">
+            <div className="HeadingDiv">
                 <h1 className= "IntroHeading">Welcome to the Task App</h1>
             </div>
             

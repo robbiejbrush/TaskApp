@@ -5,7 +5,7 @@ Starting Guide: On launch, login/sign up. You can then create or join a project,
 
 Demo:
 
-Database Schemas:
+Database Schema:
 
 Author: Robbie Brush
 

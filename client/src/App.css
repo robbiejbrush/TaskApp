@@ -1,9 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+/*Global*/
 * { 
   box-sizing: border-box; 
 }
 
+.IntroHeading {
+  font-size: 60px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+}
+
+.HeadingDiv {
+  padding-top: 225px;
+  padding-bottom: 60px;
+}
+
+.Link {
+  font-size: 20px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+}
+
+.LinkDiv {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.FieldDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.ProjectNameInput {
+  font-size: 20px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+  border-color: #1d6ff2;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.SubmitButton {
+  font-size: 20px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  border-color: #1d6ff2;
+  border-style: solid;
+  background-color: #1d6ff2;
+  border-radius: 10px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Button {
+  font-size: 20px;
+  font-family: 'Outfit', sans-serif;
+  width: 150px;
+  border: #1d6ff2;
+  border-style: solid;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #1d6ff2;
+}
+
+.Button:hover, .SubmitButton:hover {
+  transform: scale(1.02);
+}
+
+span {
+  color: red;
+  font-size: 20px;
+  font-family: 'Outfit', sans-serif;
+}
+
+/*App*/
 .App {
   text-align: center;
 }
@@ -43,17 +120,6 @@ body, html {
 
 
 /*Login Page*/
-.TopDiv {
-  padding-top: 225px;
-  padding-bottom: 60px;
-}
-
-.IntroHeading {
-  font-size: 60px;
-  color: #1d6ff2;
-  font-family: 'Outfit', sans-serif;
-}
-
 .LoginPrompt {
   display: flex;
   justify-content: center;
@@ -67,22 +133,6 @@ body, html {
   justify-content: flex-end;
   padding-right: 20px;
   gap: 20px;
-}
-
-.Button {
-  font-size: 20px;
-  font-family: 'Outfit', sans-serif;
-  width: 150px;
-  border: #1d6ff2;
-  border-style: solid;
-  color: #1d6ff2;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.Button:hover {
-  transform: scale(1.02);
 }
 
 .AllProjects {
