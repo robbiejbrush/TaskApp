@@ -15,7 +15,16 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Projects.associate = (models) => {
-        Projects.hasMany(models.Tasks, { foreignKey: 'projectId' });
+        Projects.hasMany(models.Tasks, { 
+            foreignKey: 'projectId',
+            onDelete: 'CASCADE' 
+        });
+        Projects.belongsToMany(models.Users, {
+            through: models.ProjectMembers,
+            foreignKey: 'projectId',
+            otherKey: 'userId',
+            onDelete: 'CASCADE'
+        });
     }
 
     return Projects;

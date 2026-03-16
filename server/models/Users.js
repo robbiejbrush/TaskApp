@@ -20,8 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Users.associate = (models) => {
-        Users.hasMany(models.Tasks, { foreignKey: 'userId' });
-        Users.hasMany(models.Projects, { foreignKey: 'userId' });
+        Users.belongsToMany(models.Projects, { 
+            through: models.ProjectMembers,
+            foreignKey: 'userId', 
+            otherKey: 'projectId'
+        });
     }
 
     return Users;
