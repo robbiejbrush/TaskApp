@@ -1,9 +1,33 @@
 import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CreateProject() {
   
+  let navigate = useNavigate();
+
+  let userId = null;
+      
+  const token = sessionStorage.getItem('accessToken');
+  
+  if (token) {
+    const decoded = jwtDecode(token);
+    userId = decoded.userId;
+  }
+
+  const onSubmit = (data) => {
+    const dataWithUserId = { ...data, userId: userId };
+
+    axios.post('http://localhost:3001/projects/create', dataWithUserId).then((response) => {
+      console.log("Project creation successful.");
+    });
+
+    navigate("/projects")
+  };
+
   const initialValues = {
     name: ""
   };
@@ -11,10 +35,6 @@ function CreateProject() {
   const validationSchema = Yup.object().shape({
     name: Yup.string().max(20, "Project name must be under 20 characters.").required("Input a name for your Project.")
   });
-  
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <div>
