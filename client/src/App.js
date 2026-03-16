@@ -19,9 +19,10 @@ function Navigation () {
   }
 
   const location = useLocation();
+
   let pageName = "Unspecified";
 
-  if (location.pathname === "/") {
+  if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject") {
     return null;
   } else if (location.pathname === "/projects") {
     pageName = "Projects"
