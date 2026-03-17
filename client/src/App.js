@@ -7,18 +7,20 @@ import CreateProject from './pages/CreateProject';
 import JoinProject from './pages/JoinProject';
 import logoutIcon from './imgs/icons8-logout-50.png';
 import { jwtDecode } from "jwt-decode";
+import { useState } from 'react';
 
 function Navigation () {
+  const location = useLocation();
 
   const token = sessionStorage.getItem('accessToken');
   let userName = "Unspecified";
+  
+  const selectedProjectName = location.state?.projectName;
   
   if (token) {
     const decoded = jwtDecode(token);
     userName = decoded.name;
   }
-
-  const location = useLocation();
 
   let pageName = "Unspecified";
 
@@ -26,6 +28,8 @@ function Navigation () {
     return null;
   } else if (location.pathname === "/projects") {
     pageName = "Projects"
+  } else if (location.pathname === "/tasks" && selectedProjectName) {
+    pageName = selectedProjectName;
   }
 
   return (
@@ -44,15 +48,16 @@ function Navigation () {
 }
 
 function App() {
-  
+  const [projectName, setProjectName] = useState("Unspecified");
+
   return (
     <div className="App">
       <Router>
-        <Navigation/>
+        <Navigation projectName={projectName}/>
         <Routes>
           <Route path="/" exact element={<Login />} />
           <Route path="/projects" exact element={<Projects />}/>
-          <Route path="/tasks" exact element={<Tasks />}/>
+          <Route path="/tasks" exact element={<Tasks setProjectName={setProjectName} />}/>
           <Route path="/createProject" exact element={<CreateProject />}/>
           <Route path="/joinProject" exact element={<JoinProject />}/>
         </Routes>

@@ -48,7 +48,7 @@ function Projects() {
                             className= "Project" 
                             key= {key}
                             onClick= {() => {
-                                navigate("/tasks");
+                                navigate("/tasks", {state: { projectName: value.name }});
                             }}>
                             <div className= "ProjectName"> {value.name} </div>
                         </div>
