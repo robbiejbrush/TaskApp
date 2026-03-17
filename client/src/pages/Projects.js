@@ -23,7 +23,7 @@ function Projects() {
         axios.get(`http://localhost:3001/projects/${userId}`).then((response) => {
             setProjects(response.data);
         });
-    });
+    }, [userId]);
 
     return (
         <div>
@@ -48,7 +48,13 @@ function Projects() {
                             className= "Project" 
                             key= {key}
                             onClick= {() => {
-                                navigate("/tasks", {state: { projectName: value.name }});
+                                navigate("/tasks", {
+                                    state: { 
+                                        projectId: value.projectId,
+                                        projectName: value.name,
+                                        projectCode: value.code 
+                                    }
+                                });
                             }}>
                             <div className= "ProjectName"> {value.name} </div>
                         </div>

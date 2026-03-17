@@ -5,6 +5,7 @@ import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
 import CreateProject from './pages/CreateProject';
 import JoinProject from './pages/JoinProject';
+import CreateTask from './pages/CreateTask';
 import logoutIcon from './imgs/icons8-logout-50.png';
 import { jwtDecode } from "jwt-decode";
 import { useState } from 'react';
@@ -60,6 +61,7 @@ function App() {
           <Route path="/tasks" exact element={<Tasks setProjectName={setProjectName} />}/>
           <Route path="/createProject" exact element={<CreateProject />}/>
           <Route path="/joinProject" exact element={<JoinProject />}/>
+          <Route path="/createTask" exact element={<CreateTask />}/>
         </Routes>
       </Router>
     </div>
