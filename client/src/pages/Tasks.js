@@ -66,10 +66,26 @@ const leaveProject = async () => {
     }
 };
 
+//Get all tasks for current projectId
+const [tasks, setTasks] = useState([]);
+
+useEffect(() => {
+    if (projectId) {
+        axios.get(`http://localhost:3001/projects/${projectId}/tasks`)
+            .then((response) => {
+                setTasks(response.data);
+            })
+            .catch(err => console.log("Error fetching tasks:", err));
+    }
+}, [projectId]);
+
+const incompleteTasks = tasks.filter(task => task.completionStatus === false);
+const completedTasks = tasks.filter(task => task.completionStatus === true);
+
   return (
     <div>
       <div className= "TasksTopDiv">
-        <h1 className= "ProjectCodeText">Project Code: {projectCode}</h1>
+        <h1 className= "SmallHeader">Project Code: {projectCode}</h1>
         <div className= "TasksActionsDiv">
           <div className="UserDropdownWrapper">
             {isOpen && (
@@ -105,6 +121,14 @@ const leaveProject = async () => {
             </button>
           )}
         </div>
+      </div>
+      <div className= "StatusHeadingsDiv">
+          <div>
+            <h1 className= "SmallHeader">Completed</h1>
+          </div>
+          <div>
+            <h1 className= "SmallHeader">To Do</h1>
+          </div>
       </div>
     </div>
   )

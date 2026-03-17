@@ -15,9 +15,10 @@ function Projects() {
         userId = decoded.userId;
     }
 
-    const [projects, setProjects] = useState([]);
-    
     let navigate = useNavigate();
+
+    //Get all projects for signed in userId
+    const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:3001/projects/${userId}`).then((response) => {

@@ -183,6 +183,7 @@ span {
   color: #1d6ff2;
   font-family: 'Outfit', sans-serif;
   padding-left: 20px;
+  padding-top: 10px;
 }
 
 .TasksTopDiv {
@@ -254,3 +255,16 @@ span {
 .UserItem:not(:last-child) {
   border-bottom: 1px solid #f9f9f9;
 }
+
+.StatusHeadingsDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.SmallHeader {
+  font-size: 20px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+}
+
