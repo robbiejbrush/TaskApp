@@ -23,9 +23,8 @@ function CreateProject() {
 
     axios.post('http://localhost:3001/projects/create', dataWithUserId).then((response) => {
       console.log("Project creation successful.");
+      navigate("/projects");
     });
-
-    navigate("/projects")
   };
 
   const initialValues = {

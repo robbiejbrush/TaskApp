@@ -23,9 +23,8 @@ function JoinProject() {
 
     axios.post('http://localhost:3001/projects/join', dataWithUserId).then((response) => {
       console.log("Project joining successful.");
+      navigate("/projects");
     });
-
-    navigate("/projects")
   };
 
   const initialValues = {
