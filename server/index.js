@@ -15,7 +15,7 @@ const projectsRouter = require('./routes/Projects');
 app.use("/projects", projectsRouter);
 
 const tasksRouter = require('./routes/Tasks');
-app.use("tasks", tasksRouter);
+app.use("/tasks", tasksRouter);
 
 
 db.sequelize.sync().then(()=> {

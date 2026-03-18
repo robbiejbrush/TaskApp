@@ -46,7 +46,8 @@ function JoinProject() {
       <Formik initialValues= {initialValues} onSubmit= {onSubmit} validationSchema= {validationSchema}>
         <Form>
           <div className= "FieldDiv">
-            <Field className = "FieldInput" id= "FieldInput" name= "code" placeholder= "Project Code"/>
+            <label className= "Label" htmlFor="CodeInput">Project Code:</label>
+            <Field className = "FieldInput" id= "CodeInput" name= "code" placeholder= "Project Code"/>
             <ErrorMessage name= "code" component= "span"/>
             <button className= "SubmitButton" type= "submit">Join</button>
           </div>

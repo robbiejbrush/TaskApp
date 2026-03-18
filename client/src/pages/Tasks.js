@@ -8,12 +8,10 @@ function Tasks() {
   const location = useLocation();
 
   //Obtaining props from Projects page
-  const { projectId, projectCode } = location.state || {}; 
+  const { projectId, projectCode, projectName } = location.state || {}; 
 
   //For users dropdown
   const [isOpen, setIsOpen] = useState(false);
-
-  const [projectUsers, setProjectUsers] = useState([]); 
 
   //Getting signed in user
   let userId = null;
@@ -26,10 +24,12 @@ function Tasks() {
   }
 
   //Finds current user's info from projectUsers list
+  const [projectUsers, setProjectUsers] = useState([]); 
+  
   const currentUserInfo = projectUsers.find(u => u.userId === userId);
   const userRole = currentUserInfo?.ProjectMembers?.role;
 
-  //Getting users for projectId
+  //Getting users for the projectId to populate drop down
   useEffect(() => {
     if (projectId) {
       axios.get(`http://localhost:3001/projects/${projectId}/users`)
@@ -71,16 +71,13 @@ const [tasks, setTasks] = useState([]);
 
 useEffect(() => {
     if (projectId) {
-        axios.get(`http://localhost:3001/projects/${projectId}/tasks`)
+        axios.get(`http://localhost:3001/tasks/${projectId}`)
             .then((response) => {
                 setTasks(response.data);
             })
             .catch(err => console.log("Error fetching tasks:", err));
     }
 }, [projectId]);
-
-const incompleteTasks = tasks.filter(task => task.completionStatus === false);
-const completedTasks = tasks.filter(task => task.completionStatus === true);
 
   return (
     <div>
@@ -107,7 +104,13 @@ const completedTasks = tasks.filter(task => task.completionStatus === true);
           <a className= "Link" href="http://localhost:3000/projects"> ←Projects</a>
           <button className= "Button"
             onClick = {() => {
-            navigate("/createTask");
+            navigate("/createTask", {
+              state: {
+                projectId, 
+                projectCode,
+                projectName
+              }
+            });
           }}>
             Create Task
           </button>
@@ -122,13 +125,44 @@ const completedTasks = tasks.filter(task => task.completionStatus === true);
           )}
         </div>
       </div>
-      <div className= "StatusHeadingsDiv">
-          <div>
-            <h1 className= "SmallHeader">Completed</h1>
-          </div>
-          <div>
-            <h1 className= "SmallHeader">To Do</h1>
-          </div>
+      <div className="StatusHeadingsDiv">
+        {[
+          { label: "Completed", tasks: tasks.filter(t => t.completionStatus === true) },
+          { label: "To Do", tasks: tasks.filter(t => t.completionStatus === false) }
+        ].map((column, idx) => {
+          // Sort tasks by due date
+          const sortedTasks = [...column.tasks].sort((a, b) => {
+            return new Date(a.dueDate) - new Date(b.dueDate);
+          });
+
+          return (
+            <div key={idx} className="StatusColumn">
+              <h1 className="SmallHeader">{column.label}</h1>
+            
+              {sortedTasks.map((task, key) => {
+                //Check if dueDate is expired to turn colour red
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const isOverdue = new Date(task.dueDate) < today;
+
+                return (
+                  <div className="TaskCard" key={key}>
+                    <div className="TaskTitle">{task.title}</div>
+                    <div className="TaskDescription">{task.description}</div>
+                    <div className="DatesDiv">
+                      <div className={`TaskDueDate ${isOverdue ? 'overdue' : ''}`}>
+                        Due Date: {task.dueDate}
+                      </div>
+                      <div className="TaskCreatedDate">
+                        Created Date: {task.createdAt.split('T')[0]}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
     </div>
   )

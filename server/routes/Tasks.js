@@ -13,4 +13,20 @@ router.get("/:projectId", async (req, res) => {
     }
 });
 
+router.post("/create", async (req, res) => {
+    const taskData = req.body;
+    
+    try {
+        const newTask = await Tasks.create({
+            ...taskData,
+            completionStatus: false 
+    });
+        res.json(newTask);
+
+    } catch (error) {
+        console.error("Error creating task: ", error);
+        res.status(500).json({ error: "Failed to create task." });
+    }
+});
+
 module.exports = router;

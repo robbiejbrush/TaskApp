@@ -46,7 +46,8 @@ function CreateProject() {
       <Formik initialValues= {initialValues} onSubmit= {onSubmit} validationSchema= {validationSchema}>
         <Form>
           <div className= "FieldDiv">
-            <Field className = "FieldInput" id= "FieldInput" name= "name" placeholder= "Project Name"/>
+            <label className= "Label" htmlFor="NameInput">Project Name:</label>
+            <Field className = "FieldInput" id= "NameInput" name= "name" placeholder= "Project Name"/>
             <ErrorMessage name= "name" component= "span"/>
             <button className= "SubmitButton" type= "submit">Create</button>
           </div>

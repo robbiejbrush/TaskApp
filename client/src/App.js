@@ -25,7 +25,7 @@ function Navigation () {
 
   let pageName = "Unspecified";
 
-  if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject") {
+  if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject" || location.pathname === "/createTask") {
     return null;
   } else if (location.pathname === "/projects") {
     pageName = "Projects"

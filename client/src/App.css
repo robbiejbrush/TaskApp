@@ -25,6 +25,7 @@ body, html {
   font-size: 20px;
   color: #1d6ff2;
   font-family: 'Outfit', sans-serif;
+  cursor: pointer;
 }
 
 .LinkDiv {
@@ -44,8 +45,9 @@ body, html {
   font-size: 20px;
   color: #1d6ff2;
   font-family: 'Outfit', sans-serif;
-  border-color: #1d6ff2;
   border-radius: 10px;
+  border: 2px solid #1d6ff2;
+  box-sizing: border-box; 
   width: 250px;
 }
 
@@ -82,6 +84,12 @@ body, html {
 span {
   color: red;
   font-size: 20px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.Label {
+  font-size: 20px;
+  color: #1d6ff2;
   font-family: 'Outfit', sans-serif;
 }
 
@@ -182,14 +190,14 @@ span {
   font-size: 20px;
   color: #1d6ff2;
   font-family: 'Outfit', sans-serif;
-  padding-left: 20px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 .TasksTopDiv {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding-left: 20px;
 }
 
 .TasksActionsDiv {
@@ -258,13 +266,85 @@ span {
 
 .StatusHeadingsDiv {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
+  width: 100%;
+  padding: 20px;
+}
+
+.StatusColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  width: 100%;
 }
 
 .SmallHeader {
   font-size: 20px;
   color: #1d6ff2;
   font-family: 'Outfit', sans-serif;
+}
+
+.TaskCard {
+  width: 100%;
+  overflow-wrap: break-word;  
+  word-break: break-word;     
+  hyphens: auto;              
+  min-width: 0;
+  border: white;
+  border-style: solid;
+  background-color: #1d6ff2;
+  text-align: left;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.TaskTitle {
+  font-size: 20px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  padding-left: 20px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.TaskDescription {
+  font-size: 20px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.DatesDiv {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  display: flex;     
+  gap: 20px;          
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+}
+
+.TaskDueDate, .TaskCreatedDate {
+  font-size: 20px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-weight: bold;
+}
+
+.TaskDueDate.overdue {
+  color: #ff4d4d; /* A clear, readable red */
+  font-weight: bold; 
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+}
+
+/*Create Task Page*/
+.CreateTaskHeadingDiv {
+  padding-top: 25px;
+  padding-bottom: 60px;
 }
 
