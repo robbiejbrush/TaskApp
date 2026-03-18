@@ -297,28 +297,55 @@ span {
   text-align: left;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;           
+}
+
+.TaskContent {
+  flex: 1;            
+  min-width: 0;        
+}
+
+.CompleteBtn {
+  min-width: 24px;  
+  height: 24px;
+  border-radius: 50%;  
+  border: 2px solid #ccc;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.CompleteBtn.is-completed {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
 }
 
 .TaskTitle {
   font-size: 20px;
   color: white;
   font-family: 'Outfit', sans-serif;
-  padding-left: 20px;
   font-weight: bold;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .TaskDescription {
   font-size: 20px;
   color: white;
   font-family: 'Outfit', sans-serif;
-  padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
 }
 
 .DatesDiv {
-  padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
   display: flex;     

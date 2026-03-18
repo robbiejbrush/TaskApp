@@ -79,6 +79,25 @@ useEffect(() => {
     }
 }, [projectId]);
 
+//Update task's completion status
+const toggleTaskCompletion = async (task) => {
+  const newStatus = !task.completionStatus;
+  try {
+    await axios.put(`http://localhost:3001/tasks/updateStatus/${task.taskId}`, {
+      completionStatus: newStatus
+    });
+
+    setTasks(prevTasks => 
+      prevTasks.map(t => 
+        t.taskId === task.taskId ? { ...t, completionStatus: newStatus } : t
+      )
+    );
+  } catch (err) {
+    console.error("Error updating task:", err);
+    alert("Could not update task status.");
+  }
+};
+
   return (
     <div>
       <div className= "TasksTopDiv">
@@ -147,14 +166,17 @@ useEffect(() => {
 
                 return (
                   <div className="TaskCard" key={key}>
-                    <div className="TaskTitle">{task.title}</div>
-                    <div className="TaskDescription">{task.description}</div>
-                    <div className="DatesDiv">
-                      <div className={`TaskDueDate ${isOverdue ? 'overdue' : ''}`}>
-                        Due Date: {task.dueDate}
-                      </div>
-                      <div className="TaskCreatedDate">
-                        Created Date: {task.createdAt.split('T')[0]}
+                    <button 
+                      className={`CompleteBtn ${task.completionStatus ? 'is-completed' : ''}`}
+                      onClick={() => toggleTaskCompletion(task)}>
+                      {task.completionStatus ? '✓' : ''}
+                    </button>
+                    <div className="TaskContent">
+                      <div className="TaskTitle">{task.title}</div>
+                      <div className="TaskDescription">{task.description}</div>
+                      <div className="DatesDiv">
+                          <div className={`TaskDueDate ${isOverdue ? 'overdue' : ''}`}>Due Date: {task.dueDate}</div>
+                          <div className="TaskCreatedDate">Created Date: {task.createdAt.split('T')[0]}</div>
                       </div>
                     </div>
                   </div>
