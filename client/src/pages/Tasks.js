@@ -98,6 +98,23 @@ const toggleTaskCompletion = async (task) => {
   }
 };
 
+//Deletes a task
+const deleteTask = async (taskId) => {
+  if (window.confirm("Delete this task?")) {
+    try {
+      await axios.delete(`http://localhost:3001/tasks/${taskId}`);
+      setTasks(tasks.filter(t => t.taskId !== taskId));
+    } catch (err) {
+      console.error("Error deleting task:", err);
+    }
+  }
+};
+
+//Edits a task
+const editTask = (task) => {
+  navigate("/editTask", { state: { task, projectId, projectCode, projectName } });
+};
+
   return (
     <div>
       <div className= "TasksTopDiv">
@@ -178,6 +195,10 @@ const toggleTaskCompletion = async (task) => {
                           <div className={`TaskDueDate ${isOverdue ? 'overdue' : ''}`}>Due Date: {task.dueDate}</div>
                           <div className="TaskCreatedDate">Created Date: {task.createdAt.split('T')[0]}</div>
                       </div>
+                    </div>
+                    <div className="TaskActions">
+                      <button className="Circle EditButton" onClick={() => editTask(task)}>✎</button>
+                      <button className="Circle DeleteButton" onClick={() => deleteTask(task.taskId)}>X</button>
                     </div>
                   </div>
                 );

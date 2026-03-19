@@ -6,6 +6,7 @@ import Tasks from './pages/Tasks';
 import CreateProject from './pages/CreateProject';
 import JoinProject from './pages/JoinProject';
 import CreateTask from './pages/CreateTask';
+import EditTask from './pages/EditTask';
 import logoutIcon from './imgs/icons8-logout-50.png';
 import { jwtDecode } from "jwt-decode";
 import { useState } from 'react';
@@ -25,7 +26,7 @@ function Navigation () {
 
   let pageName = "Unspecified";
 
-  if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject" || location.pathname === "/createTask") {
+  if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject" || location.pathname === "/createTask" || location.pathname === "/editTask") {
     return null;
   } else if (location.pathname === "/projects") {
     pageName = "Projects"
@@ -62,6 +63,7 @@ function App() {
           <Route path="/createProject" exact element={<CreateProject />}/>
           <Route path="/joinProject" exact element={<JoinProject />}/>
           <Route path="/createTask" exact element={<CreateTask />}/>
+          <Route path="/editTask" exact element={<EditTask />}/>
         </Routes>
       </Router>
     </div>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Tasks } = require('../models');
 
+// Get all tasks by projectId
 router.get("/:projectId", async (req, res) => {
     try {
         const tasks = await Tasks.findAll({
@@ -13,6 +14,7 @@ router.get("/:projectId", async (req, res) => {
     }
 });
 
+//Create task
 router.post("/create", async (req, res) => {
     const taskData = req.body;
     
@@ -27,6 +29,65 @@ router.post("/create", async (req, res) => {
         console.error("Error creating task: ", error);
         res.status(500).json({ error: "Failed to create task." });
     }
+});
+
+//Updates task completion status
+router.put("/updateStatus/:taskId", async (req, res) => {
+  const taskId = req.params.taskId;
+  const { completionStatus } = req.body;
+
+  try {
+    await Tasks.update(
+      { completionStatus: completionStatus }, 
+      { where: { taskId: taskId } }
+    );
+    res.status(200).json("Status updated successfully");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Deletes task
+router.delete("/:taskId", async (req, res) => {
+  const taskId = req.params.taskId;
+
+  try {
+    const result = await Tasks.destroy({
+      where: { taskId: taskId }
+    });
+
+    if (result) {
+      res.status(200).json({ message: "Task deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Task not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Error deleting task", details: err });
+  }
+});
+
+router.put("/edit/:taskId", async (req, res) => {
+  const taskId = req.params.taskId;
+  const { title, description, dueDate } = req.body;
+
+  try {
+    const [rowsUpdated] = await Tasks.update(
+      { 
+        title: title, 
+        description: description, 
+        dueDate: dueDate 
+      }, 
+      { where: { taskId: taskId } }
+    );
+
+    if (rowsUpdated > 0) {
+      res.status(200).json({ message: "Task updated successfully" });
+    } else {
+      res.status(404).json({ message: "Task not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Error updating task", details: err });
+  }
 });
 
 module.exports = router;
