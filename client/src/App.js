@@ -1,12 +1,12 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import Login from './pages/Login';
-import Projects from './pages/Projects';
-import Tasks from './pages/Tasks';
-import CreateProject from './pages/CreateProject';
-import JoinProject from './pages/JoinProject';
-import CreateTask from './pages/CreateTask';
-import EditTask from './pages/EditTask';
+import Projects from './pages/ProjectsPages/Projects';
+import Tasks from './pages/TasksPages/Tasks';
+import CreateProject from './pages/ProjectsPages/CreateProject';
+import JoinProject from './pages/ProjectsPages/JoinProject';
+import CreateTask from './pages/TasksPages/CreateTask';
+import EditTask from './pages/TasksPages/EditTask';
 import logoutIcon from './imgs/icons8-logout-50.png';
 import { jwtDecode } from "jwt-decode";
 import { useState } from 'react';

@@ -25,10 +25,9 @@ function Login() {
                             alert(response.data.error);
                         } else {
                             sessionStorage.setItem("accessToken", response.data);
+                            navigate("/projects", { replace: true })
                         }
                     });
-
-                    navigate("/projects", { replace: true })
                 }}
                 onError={() => console.log("Login failed")} 
                 auto_select={true}
