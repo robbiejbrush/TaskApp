@@ -28,7 +28,7 @@ function Login() {
                         }
                     });
 
-                    navigate("/projects")
+                    navigate("/projects", { replace: true })
                 }}
                 onError={() => console.log("Login failed")} 
                 auto_select={true}

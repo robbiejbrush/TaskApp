@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import Login from './pages/Login';
 import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
@@ -13,6 +13,12 @@ import { useState } from 'react';
 
 function Navigation () {
   const location = useLocation();
+  let navigate = useNavigate();
+
+  const logOut = () => {
+  sessionStorage.removeItem("accessToken");
+  navigate("/", { replace: true });
+}
 
   const token = sessionStorage.getItem('accessToken');
   let userName = "Unspecified";
@@ -43,7 +49,7 @@ function Navigation () {
         <h1 className = "AppBarHeading"> {pageName} </h1>
       </div>
       <div style={{ flex: 1, textAlign: 'right' }}>
-        <img src= {logoutIcon} className= "LogoutImg" alt="Logout" style={{ width: '30px', height: 'auto' }}/>
+        <img src= {logoutIcon} onClick = {logOut} className= "LogoutImg" alt="Logout" style={{ width: '30px', height: 'auto' }}/>
       </div>
     </div>
   );
