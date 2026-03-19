@@ -6,11 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function JoinProject() {
-  
-  let navigate = useNavigate();
-
-  let userId = null;
-      
+  //Get userId for joining project post request
+  let userId = null; 
   const token = sessionStorage.getItem('accessToken');
   
   if (token) {
@@ -18,13 +15,20 @@ function JoinProject() {
     userId = decoded.userId;
   }
 
-  const onSubmit = (data) => {
+  let navigate = useNavigate();
+  //Join new project with userId
+  const onSubmit = async (data) => {
     const dataWithUserId = { ...data, userId: userId };
 
-    axios.post('http://localhost:3001/projects/join', dataWithUserId).then((response) => {
+    try {
+      await axios.post('http://localhost:3001/projects/join', dataWithUserId).then((response) => {
       console.log("Project joining successful.");
       navigate("/projects");
     });
+    } catch (error) {
+      console.error("Error joining project:", error.response?.data || error.message);
+      alert("Could not join project. Please try again.");
+    }
   };
 
   const initialValues = {

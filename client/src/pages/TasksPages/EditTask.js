@@ -8,18 +8,26 @@ function EditTask() {
   let navigate = useNavigate();
   const location = useLocation();
 
+  //Obtaining project info from tasks page for back button
   const { task, projectId, projectCode, projectName } = location.state || {};
 
+  //Back to tasks page button's function
   const goBack = () => {
     navigate("/tasks", {state: { projectId, projectCode, projectName } });
   };
 
-  const onSubmit = (data) => {
-
-    axios.put(`http://localhost:3001/tasks/edit/${task.taskId}`, data).then((response) => {
+  //Updates a task
+  const onSubmit = async (data) => {
+    
+    try {
+      await axios.put(`http://localhost:3001/tasks/edit/${task.taskId}`, data).then((response) => {
       console.log("Task edited successfully.");
       navigate("/tasks", { state: { projectId, projectCode, projectName } });
     });
+    }catch (error) {
+      console.error("Error updating task:", error.response?.data || error.message);
+      alert("Could not update task. Please try again.");
+    }
   };
 
   const initialValues = {

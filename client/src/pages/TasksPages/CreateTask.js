@@ -8,19 +8,27 @@ function CreateTask() {
   let navigate = useNavigate();
   const location = useLocation();
 
+  //Obtaining projects info from tasks page for back button
   const { projectId, projectCode, projectName } = location.state || {};
 
+  //Back to tasks page button's function
   const goBack = () => {
     navigate("/tasks", {state: { projectId, projectCode, projectName } });
   };
 
-  const onSubmit = (data) => {
+  //Creates a task
+  const onSubmit = async (data) => {
     const taskToCreate = { ...data, projectId: projectId };
 
-    axios.post('http://localhost:3001/tasks/create', taskToCreate).then((response) => {
+    try {
+      await axios.post('http://localhost:3001/tasks/create', taskToCreate).then((response) => {
       console.log("Task created successfully.");
       navigate("/tasks", { state: { projectId, projectCode, projectName } });
     });
+    }catch (error) {
+      console.error("Error creating task:", error.response?.data || error.message);
+      alert("Could not create task. Please try again.");
+    }
   };
 
   const initialValues = {

@@ -15,11 +15,13 @@ function Navigation () {
   const location = useLocation();
   let navigate = useNavigate();
 
+  //Logout function
   const logOut = () => {
-  sessionStorage.removeItem("accessToken");
-  navigate("/", { replace: true });
-}
+    sessionStorage.removeItem("accessToken");
+    navigate("/", { replace: true });
+  }
 
+  //Get signed in users details from accessToken for displaying
   const token = sessionStorage.getItem('accessToken');
   let userName = "Unspecified";
   
@@ -30,6 +32,7 @@ function Navigation () {
     userName = decoded.name;
   }
 
+  //Specify app bar header and whether to show app bar or not
   let pageName = "Unspecified";
 
   if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject" || location.pathname === "/createTask" || location.pathname === "/editTask") {
@@ -40,6 +43,7 @@ function Navigation () {
     pageName = selectedProjectName;
   }
 
+  //App bar
   return (
     <div className="NavBar">
       <div style={{ flex: 1, textAlign: 'left' }}>

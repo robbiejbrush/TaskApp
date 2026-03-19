@@ -5,9 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import '../../App.css';
 
 function Projects() {
-
+    //Get userId to fetch all projects for that user
     let userId = null;
-    
     const token = sessionStorage.getItem('accessToken');
 
     if (token) {
@@ -15,16 +14,26 @@ function Projects() {
         userId = decoded.userId;
     }
 
-    let navigate = useNavigate();
-
     //Get all projects for signed in userId
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/projects/${userId}`).then((response) => {
+    const fetchProjects = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3001/projects/${userId}`);
             setProjects(response.data);
-        });
+        } catch (error) {
+            console.error("Error fetching projects:", error.response?.data || error.message);
+            alert("Could not get projects. Please try again.");
+        }
+    };
+
+        if (userId) {
+            fetchProjects();
+        }
     }, [userId]);
+
+    let navigate = useNavigate();
 
     return (
         <div>

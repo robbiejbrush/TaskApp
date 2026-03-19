@@ -7,7 +7,7 @@ function Tasks() {
   let navigate = useNavigate();
   const location = useLocation();
 
-  //Obtaining props from Projects page
+  //Obtaining project info from Projects page
   const { projectId, projectCode, projectName } = location.state || {}; 
 
   //For users dropdown
@@ -23,7 +23,7 @@ function Tasks() {
     userId = decoded.userId;
   }
 
-  //Finds current user's info from projectUsers list
+  //Finds current user's info from projectUsers list with userId, so that it knows whether user is owner or not
   const [projectUsers, setProjectUsers] = useState([]); 
   
   const currentUserInfo = projectUsers.find(u => u.userId === userId);
@@ -31,12 +31,18 @@ function Tasks() {
 
   //Getting users for the projectId to populate drop down
   useEffect(() => {
+    const fetchProjectUsers = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/projects/${projectId}/users`);
+        setProjectUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching users:", error.response?.data || error.message);
+        alert("Could not get users. Please try again.");
+      }
+    };
+
     if (projectId) {
-      axios.get(`http://localhost:3001/projects/${projectId}/users`)
-        .then((response) => {
-          setProjectUsers(response.data);
-        })
-        .catch(err => console.log("Error fetching users:", err));
+      fetchProjectUsers();
     }
   }, [projectId]);
 
@@ -46,74 +52,81 @@ function Tasks() {
         try {
             await axios.delete(`http://localhost:3001/projects/${projectId}`);
             navigate("/projects");
-        } catch (err) {
-            console.error("Error deleting project:", err);
-            alert("Could not delete this project. Check console for details.");
+        } catch (error) {
+            console.error("Error deleting project:", error);
+            alert("Could not delete project. Please try again.");
         }
     }
-};
+  };
 
-//Leaving a project
-const leaveProject = async () => {
-    if (window.confirm("Are you sure you want to leave this project?")) {
-        try {
-            await axios.delete(`http://localhost:3001/projects/${projectId}/leave/${userId}`);
-            navigate("/projects"); 
-        } catch (err) {
-            console.error("Error leaving project:", err);
-            alert("Could not leave project.");
-        }
-    }
-};
+  //Leaving a project
+  const leaveProject = async () => {
+      if (window.confirm("Are you sure you want to leave this project?")) {
+          try {
+              await axios.delete(`http://localhost:3001/projects/${projectId}/leave/${userId}`);
+              navigate("/projects"); 
+          } catch (error) {
+              console.error("Error leaving project:", error);
+              alert("Could not leave project. Please try again.");
+          }
+      }
+  };
 
-//Get all tasks for current projectId
-const [tasks, setTasks] = useState([]);
+  //Get all tasks for current projectId to display
+  const [tasks, setTasks] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/tasks/${projectId}`);
+        setTasks(response.data);
+      } catch (err) {
+        console.error("Error fetching tasks:", err.response?.data || err.message);
+        alert("Could not get tasks. Please try again.");
+      }
+    };
+
     if (projectId) {
-        axios.get(`http://localhost:3001/tasks/${projectId}`)
-            .then((response) => {
-                setTasks(response.data);
-            })
-            .catch(err => console.log("Error fetching tasks:", err));
+      fetchTasks();
     }
-}, [projectId]);
+  }, [projectId]);
 
-//Update task's completion status
-const toggleTaskCompletion = async (task) => {
-  const newStatus = !task.completionStatus;
-  try {
-    await axios.put(`http://localhost:3001/tasks/updateStatus/${task.taskId}`, {
-      completionStatus: newStatus
-    });
-
-    setTasks(prevTasks => 
-      prevTasks.map(t => 
-        t.taskId === task.taskId ? { ...t, completionStatus: newStatus } : t
-      )
-    );
-  } catch (err) {
-    console.error("Error updating task:", err);
-    alert("Could not update task status.");
-  }
-};
-
-//Deletes a task
-const deleteTask = async (taskId) => {
-  if (window.confirm("Delete this task?")) {
+  //Update task's completion status
+  const toggleTaskCompletion = async (task) => {
+    const newStatus = !task.completionStatus;
     try {
-      await axios.delete(`http://localhost:3001/tasks/${taskId}`);
-      setTasks(tasks.filter(t => t.taskId !== taskId));
-    } catch (err) {
-      console.error("Error deleting task:", err);
-    }
-  }
-};
+      await axios.put(`http://localhost:3001/tasks/updateStatus/${task.taskId}`, {
+        completionStatus: newStatus
+      });
 
-//Edits a task
-const editTask = (task) => {
-  navigate("/editTask", { state: { task, projectId, projectCode, projectName } });
-};
+      setTasks(prevTasks => 
+        prevTasks.map(t => 
+          t.taskId === task.taskId ? { ...t, completionStatus: newStatus } : t
+        )
+      );
+    } catch (error) {
+      console.error("Error updating task:", error);
+      alert("Could not update task status. Please try again.");
+    }
+  };
+
+  //Deletes a task
+  const deleteTask = async (taskId) => {
+    if (window.confirm("Delete this task?")) {
+      try {
+        await axios.delete(`http://localhost:3001/tasks/${taskId}`);
+        setTasks(tasks.filter(t => t.taskId !== taskId));
+      } catch (error) {
+        console.error("Error deleting task:", error);
+        alert("Could not delete task. Please try again.");
+      }
+    }
+  };
+
+  //Sends to edit a task page
+  const editTask = (task) => {
+    navigate("/editTask", { state: { task, projectId, projectCode, projectName } });
+  };
 
   return (
     <div>

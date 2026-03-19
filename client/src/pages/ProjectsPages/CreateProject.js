@@ -6,11 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function CreateProject() {
-  
-  let navigate = useNavigate();
-
+  //Get userId for creating project post request
   let userId = null;
-      
   const token = sessionStorage.getItem('accessToken');
   
   if (token) {
@@ -18,13 +15,19 @@ function CreateProject() {
     userId = decoded.userId;
   }
 
-  const onSubmit = (data) => {
+  let navigate = useNavigate();
+  //Create new project with userId
+  const onSubmit = async (data) => {
     const dataWithUserId = { ...data, userId: userId };
 
-    axios.post('http://localhost:3001/projects/create', dataWithUserId).then((response) => {
+    try {
+      await axios.post('http://localhost:3001/projects/create', dataWithUserId);
       console.log("Project creation successful.");
       navigate("/projects");
-    });
+    } catch (error) {
+      console.error("Error creating project:", error.response?.data || error.message);
+      alert("Could not create project. Please try again.");
+    }
   };
 
   const initialValues = {

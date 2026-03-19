@@ -10,7 +10,8 @@ router.get("/:projectId", async (req, res) => {
         });
         res.json(tasks);
     } catch (error) {
-        res.status(500).send(error);
+        console.error(error);
+        res.status(500).send("Server Error");
     }
 });
 
@@ -42,8 +43,9 @@ router.put("/updateStatus/:taskId", async (req, res) => {
       { where: { taskId: taskId } }
     );
     res.status(200).json("Status updated successfully");
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Server Error");
   }
 });
 
@@ -61,11 +63,13 @@ router.delete("/:taskId", async (req, res) => {
     } else {
       res.status(404).json({ message: "Task not found" });
     }
-  } catch (err) {
-    res.status(500).json({ error: "Error deleting task", details: err });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
   }
 });
 
+//Edits a task
 router.put("/edit/:taskId", async (req, res) => {
   const taskId = req.params.taskId;
   const { title, description, dueDate } = req.body;
