@@ -192,10 +192,11 @@ span {
 }
 
 /*Projects Page*/
+/*Desktop layout*/
 .ButtonContainer {
   padding-top: 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding-right: 20px;
   gap: 20px;
 }
@@ -240,6 +241,26 @@ span {
   margin-top: auto;
   box-shadow: 0 -8px 10px -5px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
+}
+
+/*Moble Layout*/
+@media (max-width: 768px) {
+  .AllProjects {
+    grid-template-columns: 1fr; 
+    padding: 10px;
+  }
+
+  .ButtonContainer {
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .Project {
+    height: 200px;
+  }
 }
 
 /*Tasks Page*/
@@ -469,7 +490,55 @@ span {
   font-size: 20px;
 }
 
-/*Create Task Page*/
+@media (max-width: 768px) {
+  /* Stack the Project Code and the Action Area */
+  .TasksTopDiv {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+    text-align: center;
+  }
+
+  /* Stack all buttons and links vertically */
+  .TasksActionsDiv {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-right: 0;
+    padding-top: 0;
+    gap: 15px;
+  }
+
+  /* Make buttons wider for easier tapping on mobile */
+  .DeleteOrLeaveButton, 
+  .TasksActionsDiv .Button,
+  .UserDropdownWrapper {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  /* Ensure the dropdown list doesn't get cut off when centered */
+  .UserListPopup {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Stack the Completed and To Do columns */
+  .StatusHeadingsDiv {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  
+  /* Make task dates stack if they get too squished */
+  .DatesDiv {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+
+/*Create/ Edit Task Page*/
 .CreateTaskHeadingDiv {
   padding-top: 25px;
   padding-bottom: 60px;
