@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import '../../App.css';
+import '../../CSS/App.css';
+import '../../CSS/ProjectsCSS/Projects.css'
 
 function Projects() {
     //Get userId to fetch all projects for that user

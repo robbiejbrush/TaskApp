@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/*Global*/
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+* { 
+  box-sizing: border-box; 
+}
+
+.IntroHeading {
+  font-size: 60px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+}
+
+.HeadingDiv {
+  padding-top: 225px;
+  padding-bottom: 60px;
+}
+
+.Link {
+  font-size: 20px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+}
+
+.LinkDiv {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.FieldDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.FieldInput {
+  font-size: 20px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+  border-radius: 10px;
+  border: 2px solid #1d6ff2;
+  box-sizing: border-box; 
+  width: 250px;
+}
+
+.SubmitButton {
+  font-size: 20px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  border-color: #1d6ff2;
+  border-style: solid;
+  background-color: #1d6ff2;
+  border-radius: 10px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Button {
+  font-size: 20px;
+  font-family: 'Outfit', sans-serif;
+  width: 150px;
+  border: #1d6ff2;
+  border-style: solid;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #1d6ff2;
+}
+
+.Button:hover, .SubmitButton:hover {
+  transform: scale(1.02);
+}
+
+span {
+  color: red;
+  font-size: 20px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.Label {
+  font-size: 20px;
+  color: #1d6ff2;
+  font-family: 'Outfit', sans-serif;
+}
+
+/*App*/
+.App {
+  text-align: center;
+}
+
+/*App Bar*/
+/*Desktop view*/
+.NavBar {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: space-between; 
+  background-color: #1d6ff2;
+  padding: 0 20px; 
+}
+
+/* Reset the flex behavior for children to ensure they don't collapse */
+.NavBar > div {
+  display: flex;
+  align-items: center;
+}
+
+/* Middle title container */
+.NavBar > div:nth-child(2) {
+  justify-content: center;
+  flex: 2; /* Gives the middle more room to stay centered */
+}
+
+.NavBar > div:nth-child(3) {
+  flex: 1;
+  display: flex;             /* Added: Allows child alignment */
+  justify-content: flex-end; /* Added: Pushes icon to the far right */
+  text-align: right;
+}
+
+/*Mobile View*/
+@media (max-width: 768px) {
+  .NavBar {
+    flex-wrap: wrap; /* Allows the multi-line layout */
+    height: auto;
+    padding: 15px 20px;
+  }
+
+  /* Move Project Name to the top row */
+  .NavBar > div:nth-child(2) {
+    order: -1; /* Forces it to the very top */
+    flex: 0 0 100%; /* Makes it take the full width */
+    margin-bottom: 10px;
+  }
+
+  /* Keep User Name on the bottom left */
+  .NavBar > div:nth-child(1) {
+    order: 1;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  /* Keep Logout on the bottom right */
+  .NavBar > div:nth-child(3) {
+    order: 2;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  /* Scale down the text so it doesn't overlap */
+  .AppBarHeading { font-size: 32px; margin: 0; }
+  .AppBarUser { font-size: 18px; padding-left: 0; }
+}
+
+.AppBarHeading {
+  font-size: 60px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+}
+
+.AppBarUser {
+  font-size: 30px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  padding-left: 20px;
+}
+
+.LogoutImg {
+  padding-right: 20px;
+  cursor: pointer;
+  box-sizing: content-box;
+}
+
