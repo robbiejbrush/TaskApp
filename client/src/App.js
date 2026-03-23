@@ -1,5 +1,5 @@
 import './CSS/App.css';
-import {BrowserRouter as Router, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, useLocation, useNavigate, Navigate} from 'react-router-dom';
 import Login from './pages/Login';
 import Projects from './pages/ProjectsPages/Projects';
 import Tasks from './pages/TasksPages/Tasks';
@@ -11,28 +11,35 @@ import logoutIcon from './imgs/icons8-logout-50.png';
 import { jwtDecode } from "jwt-decode";
 import { useState } from 'react';
 
-function Navigation () {
+//Get access token from cookies method
+const getAccessToken = () => document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
+
+function Navigation ({ setToken }) {
   const location = useLocation();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   //Logout function
   const logOut = () => {
-    sessionStorage.removeItem("accessToken");
+    document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; 
+    setToken(null);
     navigate("/", { replace: true });
   }
 
   //Get signed in users details from accessToken for displaying
-  const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
+  const token = getAccessToken();
   let userName = "Unspecified";
   
-  const selectedProjectName = location.state?.projectName;
-  
   if (token) {
-    const decoded = jwtDecode(token);
-    userName = decoded.name;
+    try {
+      const decoded = jwtDecode(token);
+      userName = decoded.name;
+    } catch (e) { 
+      console.error("Invalid token");
+    }
   }
 
   //Specify app bar header and whether to show app bar or not
+  const selectedProjectName = location.state?.projectName;
   let pageName = "Unspecified";
 
   if (location.pathname === "/" || location.pathname === "/createProject" || location.pathname === "/joinProject" || location.pathname === "/createTask" || location.pathname === "/editTask") {
@@ -61,19 +68,22 @@ function Navigation () {
 
 function App() {
   const [projectName, setProjectName] = useState("Unspecified");
+  
+  const [token, setToken] = useState(getAccessToken());
+  const isAuthenticated = !!token;
 
   return (
     <div className="App">
       <Router>
-        <Navigation projectName={projectName}/>
+        <Navigation projectName={projectName} setToken={setToken}/>
         <Routes>
-          <Route path="/" exact element={<Login />} />
-          <Route path="/projects" exact element={<Projects />}/>
-          <Route path="/tasks" exact element={<Tasks setProjectName={setProjectName} />}/>
-          <Route path="/createProject" exact element={<CreateProject />}/>
-          <Route path="/joinProject" exact element={<JoinProject />}/>
-          <Route path="/createTask" exact element={<CreateTask />}/>
-          <Route path="/editTask" exact element={<EditTask />}/>
+          <Route path="/" element={isAuthenticated ? <Navigate to="/projects" replace /> : <Login setToken= {setToken}/>} />
+          <Route path="/projects" element={isAuthenticated ? <Projects /> : <Navigate to="/" replace />}/>
+          <Route path="/tasks" element={isAuthenticated ? <Tasks setProjectName={setProjectName} /> : <Navigate to="/" replace />}/>
+          <Route path="/createProject" element={isAuthenticated ? <CreateProject /> : <Navigate to="/" replace />} />
+          <Route path="/joinProject" element={isAuthenticated ? <JoinProject /> : <Navigate to="/" replace />} />
+          <Route path="/createTask" element={isAuthenticated ? <CreateTask /> : <Navigate to="/" replace />} />
+          <Route path="/editTask" element={isAuthenticated ? <EditTask /> : <Navigate to="/" replace />} />
         </Routes>
       </Router>
     </div>

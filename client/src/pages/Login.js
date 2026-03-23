@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../CSS/App.css';
 import '../CSS/Login.css'
 
-function Login() {
+function Login({ setToken }) {
 
     const navigate = useNavigate()
 
@@ -26,7 +26,9 @@ function Login() {
                             alert(response.data.error);
                         } else {
                             const expiryDate = new Date(9999, 0, 1).toUTCString();
-                            document.cookie = `accessToken=${response.data}; expires=${expiryDate}`;
+                            document.cookie = `accessToken=${response.data}; expires=${expiryDate}; path=/`;
+                            
+                            setToken(response.data);
                             navigate("/projects", { replace: true })
                         }
                     });
