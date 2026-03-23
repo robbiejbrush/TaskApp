@@ -5,7 +5,7 @@ Starting Guide: On launch, login/sign up. You can then create or join a project,
 
 Demo:
 
-Database Schema:
+Database Schema: https://drive.google.com/file/d/1a6dJCds4_kTzbI1H6OTDAq4oUnltWsbI/view?usp=sharing
 
 Author: Robbie Brush
 
