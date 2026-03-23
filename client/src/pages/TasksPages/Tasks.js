@@ -176,8 +176,8 @@ function Tasks() {
       </div>
       <div className="StatusHeadingsDiv">
         {[
-          { label: "Completed", tasks: tasks.filter(t => t.completionStatus === true) },
-          { label: "To Do", tasks: tasks.filter(t => t.completionStatus === false) }
+          { label: "To Do", tasks: tasks.filter(t => t.completionStatus === false) },
+          { label: "Completed", tasks: tasks.filter(t => t.completionStatus === true) }
         ].map((column, idx) => {
           // Sort tasks by due date
           const sortedTasks = [...column.tasks].sort((a, b) => {
