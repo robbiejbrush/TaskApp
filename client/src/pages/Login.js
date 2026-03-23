@@ -24,7 +24,8 @@ function Login() {
                         if (response.data.error) {
                             alert(response.data.error);
                         } else {
-                            sessionStorage.setItem("accessToken", response.data);
+                            const expiryDate = new Date(9999, 0, 1).toUTCString();
+                            document.cookie = `accessToken=${response.data}; expires=${expiryDate}`;
                             navigate("/projects", { replace: true })
                         }
                     });

@@ -22,7 +22,7 @@ function Navigation () {
   }
 
   //Get signed in users details from accessToken for displaying
-  const token = sessionStorage.getItem('accessToken');
+  const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
   let userName = "Unspecified";
   
   const selectedProjectName = location.state?.projectName;

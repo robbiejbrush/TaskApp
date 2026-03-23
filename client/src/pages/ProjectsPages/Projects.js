@@ -7,8 +7,7 @@ import '../../App.css';
 function Projects() {
     //Get userId to fetch all projects for that user
     let userId = null;
-    const token = sessionStorage.getItem('accessToken');
-
+    const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
     if (token) {
         const decoded = jwtDecode(token);
         userId = decoded.userId;
