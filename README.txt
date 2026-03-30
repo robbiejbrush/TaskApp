@@ -3,9 +3,9 @@ Description: A full-stack task management application that helps users organize,
 
 Starting Guide: On launch, login through your Google account. You can then create or join a project, then begin creatng and finishing tasks for that project.
 
-Demo:
+Demo: https://drive.google.com/file/d/1htLXvlKHdKHddtgVe76pNjfI_vGSd992/view?usp=sharing
 
-Screenshots: 
+Screenshots: https://drive.google.com/drive/folders/13q1WaCDnJC93Qlvz7pyU0HouEJ-BfL1z?usp=sharing
 
 Database Schema: https://drive.google.com/file/d/1a6dJCds4_kTzbI1H6OTDAq4oUnltWsbI/view?usp=sharing
 
