@@ -1,12 +1,59 @@
 # Task App
-Description: A simple task management app to create and join projects, as well as create and finish tasks assigned to projects.
+Description: A full-stack task management application that helps users organize, track, and prioritize their projects with an intuitive UI and real-time updates.
 
-Starting Guide: On launch, login/sign up. You can then create or join a project, then begin creatng and finishing tasks for that project.
+Starting Guide: On launch, login through your Google account. You can then create or join a project, then begin creatng and finishing tasks for that project.
 
 Demo:
 
+Screenshots: 
+
 Database Schema: https://drive.google.com/file/d/1a6dJCds4_kTzbI1H6OTDAq4oUnltWsbI/view?usp=sharing
 
-Author: Robbie Brush
+Features: 
+    -User authentication (Google OAuth login)
+    -Create, join, and delete projects
+    -Create, edit, and delete tasks
+    -Task status tracking (To Do and Completed)
+    -Task due dates
+    -Responsive UI
 
-Technologies: VSCode, React, Node.js, MySQL, Postman
+Technologies: 
+    FrontEnd- React, CSS 
+    Backend- Node.js + Express
+    Database- MySQL
+
+Architecture: 
+    -Client communicates with REST API
+    -Authentication handled using JWT
+    -Backend manages business logic and database operations
+    -Data persisted in MySQL
+
+Usage: 
+    -Login through Google
+    -Create projects with a name
+    -Create tasks with a title, description, and due date
+    -Update tasks and their status as you progress
+
+API Endpoints:
+    POST /api/auth
+
+    GET /api/projects/userId
+    GET /api/projects/projectId/users
+    POST /api/projects/create
+    POST /api/projects/join
+    DELETE /api/projects/projectId
+    DELETE /api/projects/projectId/leave/userId
+
+    GET /api/tasks/projectId
+    POST /api/tasks/create
+    PUT /api/tasks/updateStatus/taskId
+    PUT /api/tasks/edit/taskId
+    DELETE /api/tasks/taskId
+
+Challenges: 
+    -Implementing secure authentication with JWT
+    -Managing state across pages effectively
+    -Building responsive CSS for all screen dimensions
+    -Deploying both the Frontend and Backend
+
+Author: Robbie Brush

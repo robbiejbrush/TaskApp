@@ -59,7 +59,7 @@ router.post("/create", async (req, res) => {
             }
         }
     }
-
+    
     // After project is successfully created, create association in junction table
     try {
         const user = await Users.findByPk(userId);

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function CreateProject() {
   //Get userId for creating project post request
   let userId = null;
-  const token = sessionStorage.getItem('accessToken');
+  const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
   
   if (token) {
     const decoded = jwtDecode(token);

@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 function JoinProject() {
   //Get userId for joining project post request
-  let userId = null; 
-  const token = sessionStorage.getItem('accessToken');
-  
+  let userId = null;
+  const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
+    
   if (token) {
     const decoded = jwtDecode(token);
     userId = decoded.userId;
