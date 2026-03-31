@@ -21,7 +21,7 @@ function EditTask() {
   const onSubmit = async (data) => {
     
     try {
-      await axios.put(`http://localhost:3001/tasks/edit/${task.taskId}`, data).then((response) => {
+      await axios.put(`https://task-app-9add24d8d958.herokuapp.com/tasks/edit/${task.taskId}`, data).then((response) => {
       console.log("Task edited successfully.");
       navigate("/tasks", { state: { projectId, projectCode, projectName } });
     });

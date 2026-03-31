@@ -34,7 +34,7 @@ function Tasks() {
   useEffect(() => {
     const fetchProjectUsers = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/projects/${projectId}/users`);
+        const response = await axios.get(`https://task-app-9add24d8d958.herokuapp.com/projects/${projectId}/users`);
         setProjectUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error.response?.data || error.message);
@@ -51,7 +51,7 @@ function Tasks() {
   const deleteProject = async () => {
     if (window.confirm("Are you sure you want to delete this project? This cannot be undone.")) {
         try {
-            await axios.delete(`http://localhost:3001/projects/${projectId}`);
+            await axios.delete(`https://task-app-9add24d8d958.herokuapp.com/projects/${projectId}`);
             navigate("/projects");
         } catch (error) {
             console.error("Error deleting project:", error);
@@ -64,7 +64,7 @@ function Tasks() {
   const leaveProject = async () => {
       if (window.confirm("Are you sure you want to leave this project?")) {
           try {
-              await axios.delete(`http://localhost:3001/projects/${projectId}/leave/${userId}`);
+              await axios.delete(`https://task-app-9add24d8d958.herokuapp.com/projects/${projectId}/leave/${userId}`);
               navigate("/projects"); 
           } catch (error) {
               console.error("Error leaving project:", error);
@@ -79,7 +79,7 @@ function Tasks() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/tasks/${projectId}`);
+        const response = await axios.get(`https://task-app-9add24d8d958.herokuapp.com/tasks/${projectId}`);
         setTasks(response.data);
       } catch (err) {
         console.error("Error fetching tasks:", err.response?.data || err.message);
@@ -96,7 +96,7 @@ function Tasks() {
   const toggleTaskCompletion = async (task) => {
     const newStatus = !task.completionStatus;
     try {
-      await axios.put(`http://localhost:3001/tasks/updateStatus/${task.taskId}`, {
+      await axios.put(`https://task-app-9add24d8d958.herokuapp.com/tasks/updateStatus/${task.taskId}`, {
         completionStatus: newStatus
       });
 
@@ -115,7 +115,7 @@ function Tasks() {
   const deleteTask = async (taskId) => {
     if (window.confirm("Delete this task?")) {
       try {
-        await axios.delete(`http://localhost:3001/tasks/${taskId}`);
+        await axios.delete(`https://task-app-9add24d8d958.herokuapp.com/tasks/${taskId}`);
         setTasks(tasks.filter(t => t.taskId !== taskId));
       } catch (error) {
         console.error("Error deleting task:", error);

@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "Bru$hy98",
-    "database": "taskappdb",
-    "host": "localhost",
+    "username": "q21ayl6muk9w15wd",
+    "password": "tiljrq0fwn4o1zld",
+    "database": "myil05lm54i348aj",
+    "host": "etdq12exrvdjisg6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": "q21ayl6muk9w15wd",
+    "password": "tiljrq0fwn4o1zld",
+    "database": "myil05lm54i348aj",
+    "host": "etdq12exrvdjisg6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "q21ayl6muk9w15wd",
+    "password": "tiljrq0fwn4o1zld",
+    "database": "myil05lm54i348aj",
+    "host": "etdq12exrvdjisg6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }

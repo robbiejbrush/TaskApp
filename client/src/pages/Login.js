@@ -21,7 +21,7 @@ function Login({ setToken }) {
                     
                     const data = { email: decodedUser.email, name: decodedUser.name }
 
-                    axios.post("http://localhost:3001/auth", data).then((response) => {
+                    axios.post("https://task-app-9add24d8d958.herokuapp.com/auth", data).then((response) => {
                         if (response.data.error) {
                             alert(response.data.error);
                         } else {

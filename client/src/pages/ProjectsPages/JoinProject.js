@@ -21,7 +21,7 @@ function JoinProject() {
     const dataWithUserId = { ...data, userId: userId };
 
     try {
-      await axios.post('http://localhost:3001/projects/join', dataWithUserId).then((response) => {
+      await axios.post('https://task-app-9add24d8d958.herokuapp.com/projects/join', dataWithUserId).then((response) => {
       console.log("Project joining successful.");
       navigate("/projects");
     });

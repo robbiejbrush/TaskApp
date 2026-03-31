@@ -21,7 +21,7 @@ function CreateProject() {
     const dataWithUserId = { ...data, userId: userId };
 
     try {
-      await axios.post('http://localhost:3001/projects/create', dataWithUserId);
+      await axios.post('https://task-app-9add24d8d958.herokuapp.com/projects/create', dataWithUserId);
       console.log("Project creation successful.");
       navigate("/projects");
     } catch (error) {

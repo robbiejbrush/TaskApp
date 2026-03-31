@@ -22,7 +22,7 @@ function CreateTask() {
     const taskToCreate = { ...data, projectId: projectId };
 
     try {
-      await axios.post('http://localhost:3001/tasks/create', taskToCreate).then((response) => {
+      await axios.post('https://task-app-9add24d8d958.herokuapp.com/tasks/create', taskToCreate).then((response) => {
       console.log("Task created successfully.");
       navigate("/tasks", { state: { projectId, projectCode, projectName } });
     });
