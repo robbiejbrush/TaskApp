@@ -1,4 +1,7 @@
 # Task App
+
+Live App: https://taskapprbrush.netlify.app
+
 Description: A full-stack task management application that helps users organize, track, and prioritize their projects with an intuitive UI and real-time updates.
 
 Starting Guide: On launch, login through your Google account. You can then create or join a project, then begin creating and finishing tasks for that project.
