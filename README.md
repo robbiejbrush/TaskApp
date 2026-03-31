@@ -23,11 +23,11 @@ Features:
 
 Technologies: 
 
-    FrontEnd- React, CSS 
+    Frontend- React, CSS 
     Backend- Node.js + Express
     Database- MySQL
 
-    FrontEnd Deploy: Netlify
+    Frontend Deploy: Netlify
     Backend Deploy: Heroku + JawsDB
 
 Architecture: 
