@@ -43,7 +43,7 @@ function JoinProject() {
     <div>
       <div className="HeadingDiv">
         <div className= "LinkDiv">
-          <a className= "Link" href="http://localhost:3000/projects"> ←Back</a>
+          <a className= "Link" href="https://taskapprbrush.netlify.app/projects"> ←Back</a>
         </div>
           <h1 className= "IntroHeading">Join a Project</h1>
       </div>
