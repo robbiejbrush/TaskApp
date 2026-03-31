@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
            type: DataTypes.DATEONLY,
            allowNull: false 
         }
+    }, {
+        tableName: 'tasks',
+        freezeTableName: true
     });
 
     Tasks.associate = (models) => {
