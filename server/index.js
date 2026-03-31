@@ -18,9 +18,9 @@ const tasksRouter = require('./routes/Tasks');
 app.use("/tasks", tasksRouter);
 
 
-db.sequelize.sync().then(()=> {
+//db.sequelize.sync().then(()=> {
     app.listen(process.env.PORT || PORT, () => {
         console.log(`Server is running on port ${PORT}.`);
     });
-});
+//});
 
