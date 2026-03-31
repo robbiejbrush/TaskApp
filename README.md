@@ -27,6 +27,9 @@ Technologies:
     Backend- Node.js + Express
     Database- MySQL
 
+    FrontEnd Deploy: Netlify
+    Backend Deploy: Heroku + JawsDB
+
 Architecture: 
 
     -Client communicates with REST API
