@@ -1,18 +1,21 @@
 # Task App
 
-Live App: https://taskapprbrush.netlify.app
+### Live App 
+https://taskapprbrush.netlify.app
 
-Description: A full-stack task management application that helps users organize, track, and prioritize their projects with an intuitive UI and real-time updates.
+### Description 
+A full-stack task management application that helps users organize, track, and prioritize their projects with an intuitive UI and real-time updates.
 
-Starting Guide: On launch, login through your Google account. You can then create or join a project, then begin creating and finishing tasks for that project.
+### Demo 
+https://drive.google.com/file/d/1htLXvlKHdKHddtgVe76pNjfI_vGSd992/view?usp=sharing
 
-Demo: https://drive.google.com/file/d/1htLXvlKHdKHddtgVe76pNjfI_vGSd992/view?usp=sharing
+### Screenshots
+https://drive.google.com/drive/folders/13q1WaCDnJC93Qlvz7pyU0HouEJ-BfL1z?usp=sharing
 
-Screenshots: https://drive.google.com/drive/folders/13q1WaCDnJC93Qlvz7pyU0HouEJ-BfL1z?usp=sharing
+### Database Schema
+https://drive.google.com/file/d/1XSY6pHWDotbABGMOmzCU9pGrZ6elxuTL/view?usp=sharing
 
-Database Schema: https://drive.google.com/file/d/1a6dJCds4_kTzbI1H6OTDAq4oUnltWsbI/view?usp=sharing
-
-Features: 
+### Features
 
     -User authentication (Google OAuth login)
     -Create, join, and delete projects
@@ -21,7 +24,7 @@ Features:
     -Task due dates
     -Responsive UI
 
-Technologies: 
+### Technologies 
 
     Frontend- React, CSS 
     Backend- Node.js + Express
@@ -30,21 +33,14 @@ Technologies:
     Frontend Deploy: Netlify
     Backend Deploy: Heroku + JawsDB
 
-Architecture: 
+### Architecture
 
     -Client communicates with REST API
     -Authentication handled using JWT
     -Backend manages business logic and database operations
     -Data persisted in MySQL
 
-Usage: 
-
-    -Login through Google
-    -Create projects with a name
-    -Create tasks with a title, description, and due date
-    -Update tasks and their status as you progress
-
-API Endpoints:
+### API Endpoints
     
     POST /api/auth
 
@@ -61,11 +57,12 @@ API Endpoints:
     PUT /api/tasks/edit/taskId
     DELETE /api/tasks/taskId
 
-Challenges: 
+### Challenges
 
     -Implementing secure authentication with JWT
     -Managing state across pages effectively
     -Building responsive CSS for all screen dimensions
     -Deploying both the Frontend and Backend
 
-Author: Robbie Brush
+### Author
+Robbie Brush
