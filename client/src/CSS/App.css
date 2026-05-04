@@ -16,9 +16,17 @@ body, html {
   font-family: 'Outfit', sans-serif;
 }
 
+.PageDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;     
+  height: 90vh;
+}
+
 .HeadingDiv {
-  padding-top: 225px;
-  padding-bottom: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .Link {
@@ -115,71 +123,53 @@ span {
 .NavBar > div {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 
 /* Middle title container */
 .NavBar > div:nth-child(2) {
   justify-content: center;
-  flex: 2; /* Gives the middle more room to stay centered */
 }
 
 .NavBar > div:nth-child(3) {
   flex: 1;
-  display: flex;             /* Added: Allows child alignment */
-  justify-content: flex-end; /* Added: Pushes icon to the far right */
+  display: flex;             
+  justify-content: flex-end; 
   text-align: right;
-}
-
-/*Mobile View*/
-@media (max-width: 768px) {
-  .NavBar {
-    flex-wrap: wrap; /* Allows the multi-line layout */
-    height: auto;
-    padding: 15px 20px;
-  }
-
-  /* Move Project Name to the top row */
-  .NavBar > div:nth-child(2) {
-    order: -1; /* Forces it to the very top */
-    flex: 0 0 100%; /* Makes it take the full width */
-    margin-bottom: 10px;
-  }
-
-  /* Keep User Name on the bottom left */
-  .NavBar > div:nth-child(1) {
-    order: 1;
-    flex: 1;
-    justify-content: flex-start;
-  }
-
-  /* Keep Logout on the bottom right */
-  .NavBar > div:nth-child(3) {
-    order: 2;
-    flex: 1;
-    justify-content: flex-end;
-  }
-
-  /* Scale down the text so it doesn't overlap */
-  .AppBarHeading { font-size: 32px; margin: 0; }
-  .AppBarUser { font-size: 18px; padding-left: 0; }
 }
 
 .AppBarHeading {
   font-size: 60px;
   color: white;
   font-family: 'Outfit', sans-serif;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .AppBarUser {
   font-size: 30px;
   color: white;
   font-family: 'Outfit', sans-serif;
-  padding-left: 20px;
 }
 
 .LogoutImg {
-  padding-right: 20px;
   cursor: pointer;
   box-sizing: content-box;
+}
+
+/*Mobile View*/
+@media (max-width: 768px) {
+  .NavBar { 
+    min-height: 70px; 
+  }
+
+  .AppBarHeading {
+    font-size: 28px;
+    margin: 0;
+  }
+
+  .AppBarUser {
+    display: none;
+  }
 }
 
